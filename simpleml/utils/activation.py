@@ -17,3 +17,6 @@ def leaky_relu(x, alpha=0.1):
 
 def elu(x, alpha=0.1):
     return np.where(x >= 0, x, alpha * (np.exp(x) - 1))
+
+def heaviside(x):
+    return np.where(x > 0, 1, 0)
