@@ -1,6 +1,10 @@
 import numpy as np
 
 class LinearRegression:
+    """
+    Linear Regression model using gradient descent.
+    """
+
     def __init__(self, learning_rate=0.1, n_iter=100):
         self.learning_rate = learning_rate
         self.n_iter = n_iter
@@ -26,3 +30,19 @@ class LinearRegression:
 
     def predict(self, X):
         return np.dot(X, self.weights) + self.bias
+
+class LinearRegressionCFS:
+    """
+    Linear Regression using closed-form solution.
+    """
+
+    def fit(self, X, y):
+        self.n_samples, self.n_features = X.shape
+
+        # CFS
+        X = np.insert(X, 0, 1, axis=1)
+        self.weights = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
+
+    def predict(self, X):
+        X = np.insert(X, 0, 1, axis=1)
+        return np.dot(X, self.weights)
