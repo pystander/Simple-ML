@@ -1,1 +1,1 @@
-from .k_means import KMeans, KMeansPP
+from .k_means import KMeans
