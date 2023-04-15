@@ -10,6 +10,7 @@ Simple implementation of Machine Learning algorithms in Python.
   - [x] Naive Bayes
   - [x] K-Nearest Neighbors (KNN)
   - [x] Perceptron
+  - [x] Linear Discriminant Analysis (LDA)
   - [ ] Decision Trees
   - [ ] Random Forest
   - [ ] Support Vector Machines (SVM)

@@ -1,5 +1,5 @@
 import numpy as np
-from simpleml.utils import normal_pdf
+from simpleml.utils.distribution import normal_pdf
 
 class NaiveBayesClassifier:
     def fit(self, X, y):

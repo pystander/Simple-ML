@@ -1,5 +1,5 @@
 import numpy as np
-from simpleml.utils import sigmoid
+from simpleml.utils.activation import sigmoid
 
 class LogisticRegression:
     def __init__(self, learning_rate=0.1, n_iter=100):

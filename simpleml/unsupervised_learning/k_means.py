@@ -2,10 +2,7 @@ import numpy as np
 
 class KMeans:
     """
-    (Still under development. Please use with caution.)
-
-    A variant of k-means that initializes centers in a different manner.
-    According to my lecturer, this could help me outperform those "k-means guys".
+    K-Means clustering algorithm. Use k-means++ initialization as default.
 
     References:
     https://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf
@@ -37,7 +34,7 @@ class KMeans:
 
         elif self.init == "random":
             centers = X[np.random.choice(len(X), self.k, replace=False)]
-        
+
         else:
             raise ValueError("Invalid init method.")
 
@@ -50,7 +47,7 @@ class KMeans:
         # Update centers
         for _ in range(self.n_iter):
             dists = np.sqrt(((X - self.centers[:, np.newaxis]) ** 2).sum(axis=2))
-            clusters = np.argmin(dists, axis=0)            
+            clusters = np.argmin(dists, axis=0)
             self.centers = np.array([X[clusters == k].mean(axis=0) for k in range(self.k)])
 
     def predict(self, X):
