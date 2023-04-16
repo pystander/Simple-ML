@@ -18,8 +18,8 @@ Simple implementation of Machine Learning algorithms in Python.
 
 - Unsupervised Learning
   - [x] K-Means Clustering
+  - [x] Principal Component Analysis (PCA)
   - [ ] Hierarchical Clustering
-  - [ ] Principal Component Analysis (PCA)
   - [ ] Autoencoder
 
 - Reinforcement Learning

@@ -2,7 +2,7 @@ import numpy as np
 
 class LDA:
     """
-    Linear Discriminant Analysis for dimensionality reduction and classification.
+    Linear Discriminant Analysis (LDA) for dimensionality reduction and classification.
 
     References:
     https://usir.salford.ac.uk/id/eprint/52074/1/AI_Com_LDA_Tarek.pdf
@@ -37,12 +37,12 @@ class LDA:
 
         # Compute eigenvalues and eigenvectors
         A = np.dot(np.linalg.inv(self.S_w), self.S_b)
-        eig_values, eig_vectors = np.linalg.eig(A)
+        evals, evecs = np.linalg.eig(A)
 
         # Select top n_components eigenvectors
-        idx = eig_values.argsort()[::-1]
-        self.eig_values = eig_values[idx][:self.n_components]
-        self.eig_vectors = eig_vectors[:, idx][:, :self.n_components]
+        idx = evals.argsort()[::-1]
+        self.evals = evals[idx][:self.n_components]
+        self.evecs = evecs[:, idx][:, :self.n_components]
 
         # Project
-        return np.dot(X, self.eig_vectors)
+        return np.dot(X, self.evecs)
