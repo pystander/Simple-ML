@@ -5,15 +5,18 @@ class PCA:
     Principal Component Analysis (PCA) for dimensionality reduction.
     """
 
-    def __init__(self, n_components):
+    def __init__(self, n_components=None):
         self.n_components = n_components
 
-    def transform(self, X):
+    def fit(self, X):
+        if self.n_components is None:
+            self.n_components = min(X.shape)
+
         # Center data
-        self.X = X - np.mean(X, axis=0)
+        X = X - np.mean(X, axis=0)
 
         # Covariance matrix
-        self.cov = np.cov((self.X).T)
+        self.cov = np.cov(X.T)
 
         # Compute eigenvalues and eigenvectors
         evals, evecs = np.linalg.eig(self.cov)
@@ -23,5 +26,9 @@ class PCA:
         self.evals = evals[idx][:self.n_components]
         self.evecs = evecs[:, idx][:, :self.n_components]
 
-        # Project
-        return np.dot(self.X, self.evecs)
+    def transform(self, X):
+        return np.dot(X, self.evecs)
+
+    def fit_transform(self, X):
+        self.fit(X)
+        return self.transform(X)

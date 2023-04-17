@@ -1,6 +1,10 @@
 import numpy as np
 
 class KNN:
+    """
+    K-nearest neighbors classifier.
+    """
+
     def __init__(self, k=3):
         self.k = k
 

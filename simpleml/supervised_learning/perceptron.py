@@ -3,8 +3,7 @@ from simpleml.utils.activation import heaviside
 
 class Perceptron:
     """
-    Single-layer neural network with no hidden layer.
-    Only works for binary classification.
+    Single-layer neural network with no hidden layer. Only works for binary classification.
     """
 
     def __init__(self, learning_rate=0.0001, n_iter=1000):

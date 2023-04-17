@@ -2,6 +2,10 @@ import numpy as np
 from simpleml.utils.distribution import normal_pdf
 
 class NaiveBayesClassifier:
+    """
+    Gaussian Naive Bayes classifier.
+    """
+
     def fit(self, X, y):
         self.n_samples, self.n_features = X.shape
         self.classes = np.unique(y)
