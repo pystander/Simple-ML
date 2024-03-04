@@ -1,5 +1,7 @@
 import numpy as np
-from simpleml.utils.activation import heaviside
+
+from utils.activation import heaviside
+
 
 class Perceptron:
     """

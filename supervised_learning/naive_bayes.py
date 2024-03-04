@@ -1,5 +1,7 @@
 import numpy as np
-from simpleml.utils.distribution import normal_pdf
+
+from utils.distribution import normal_pdf
+
 
 class NaiveBayesClassifier:
     """

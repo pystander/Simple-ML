@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class LDA:
     """
     Fisher Linear Discriminant Analysis (LDA) for dimensionality reduction and classification.

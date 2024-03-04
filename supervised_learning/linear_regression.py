@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class LinearRegression:
     """
     Linear Regression model using gradient descent.
@@ -30,6 +31,7 @@ class LinearRegression:
 
     def predict(self, X):
         return np.dot(X, self.weights) + self.bias
+
 
 class LinearRegressionCFS:
     """

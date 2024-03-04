@@ -1,5 +1,7 @@
 import numpy as np
-from simpleml.utils.activation import sigmoid
+
+from utils.activation import sigmoid
+
 
 class LogisticRegression:
     """

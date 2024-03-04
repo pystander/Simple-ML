@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class KMeans:
     """
     K-Means clustering algorithm. Use k-means++ initialization as default.

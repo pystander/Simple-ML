@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class PCA:
     """
     Principal Component Analysis (PCA) for dimensionality reduction.

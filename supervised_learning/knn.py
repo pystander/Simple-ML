@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class KNN:
     """
     K-nearest neighbors classifier.
