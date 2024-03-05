@@ -11,7 +11,8 @@ class DecisionNode:
 
 
 class DecisionTree:
-    def __init__(self, max_depth=2, min_samples_split=2):
+    def __init__(self, criterion="gini", max_depth=2, min_samples_split=2):
+        self.criterion = criterion
         self.max_depth = max_depth
         self.min_samples_split = min_samples_split
 
@@ -36,7 +37,7 @@ class DecisionTree:
         return DecisionNode(feature_index, threshold, left_tree, right_tree)
 
     def best_criteria(self, X, y):
-        best_gini = 1
+        max_info_gain = float("-inf")
         best_feature_index, best_threshold = None, None
 
         for feature_index in range(X.shape[1]):
@@ -49,10 +50,10 @@ class DecisionTree:
                 if len(left_indices) == 0 or len(right_indices) == 0:
                     continue
 
-                gini = self.gini_index(y[left_indices], y[right_indices])
+                info_gain = self.get_info_gain(y, y[left_indices], y[right_indices], self.criterion)
 
-                if gini < best_gini:
-                    best_gini = gini
+                if info_gain > max_info_gain:
+                    max_info_gain = info_gain
                     best_feature_index = feature_index
                     best_threshold = threshold
 
@@ -64,18 +65,29 @@ class DecisionTree:
 
         return left_indices, right_indices
 
-    def gini_index(self, left_y, right_y):
-        n = len(left_y) + len(right_y)
+    def get_info_gain(self, y, left_y, right_y, criterion):
+        n = len(y)
         p_left = len(left_y) / n
         p_right = len(right_y) / n
 
-        return p_left * self.gini(left_y) + p_right * self.gini(right_y)
+        if criterion == "gini":
+            return self.gini(y) - (p_left * self.gini(left_y) + p_right * self.gini(right_y))
+        elif criterion == "entropy":
+            return self.entropy(y) - (p_left * self.entropy(left_y) + p_right * self.entropy(right_y))
+        else:
+            raise ValueError(f"Unknown criterion: {criterion}")
+
+    def entropy(self, y):
+        counts = np.unique(y, return_counts=True)[1]
+        prob = counts / len(y)
+
+        return -np.sum(prob * np.log2(prob))
 
     def gini(self, y):
-        _, counts = np.unique(y, return_counts=True)
-        p = counts / len(y)
+        counts = np.unique(y, return_counts=True)[1]
+        prob = counts / len(y)
 
-        return 1 - np.sum(p ** 2)
+        return 1 - np.sum(prob ** 2)
 
     def get_most_common(self, y):
         y = list(y)
