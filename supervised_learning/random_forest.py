@@ -4,6 +4,10 @@ from decision_tree import DecisionTree
 
 
 class RandomForest:
+    """
+    A random forest classifier.
+    """
+
     def __init__(self, n_trees=100, criterion="gini", max_depth=100, min_samples_split=2):
         self.n_trees = n_trees
         self.criterion = criterion

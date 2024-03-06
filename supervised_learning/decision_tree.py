@@ -2,6 +2,10 @@ import numpy as np
 
 
 class DecisionNode:
+    """
+    A node in a decision tree.
+    """
+
     def __init__(self, feature_index=None, threshold=None, left=None, right=None, value=None):
         self.feature_index = feature_index
         self.threshold = threshold
@@ -11,6 +15,10 @@ class DecisionNode:
 
 
 class DecisionTree:
+    """
+    A decision tree classifier.
+    """
+
     def __init__(self, criterion="gini", max_depth=2, min_samples_split=2):
         self.criterion = criterion
         self.max_depth = max_depth
