@@ -60,8 +60,15 @@ class DecisionTree:
         return best_feature_index, best_threshold
 
     def split(self, feature_values, threshold):
-        left_indices = np.where(feature_values <= threshold)[0]
-        right_indices = np.where(feature_values > threshold)[0]
+        left_indices = None
+        right_indices = None
+
+        if isinstance(threshold, (int, float)):
+            left_indices = np.where(feature_values <= threshold)[0]
+            right_indices = np.where(feature_values > threshold)[0]
+        else:
+            left_indices = np.where(feature_values == threshold)[0]
+            right_indices = np.where(feature_values != threshold)[0]
 
         return left_indices, right_indices
 
@@ -90,8 +97,10 @@ class DecisionTree:
         return 1 - np.sum(prob ** 2)
 
     def get_most_common(self, y):
-        y = list(y)
-        return max(y, key=y.count)
+        if len(y) == 0:
+            return None
+
+        return np.bincount(y).argmax()
 
     def predict(self, X):
         return [self._predict(x) for x in X]

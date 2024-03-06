@@ -1,5 +1,5 @@
 # Simple-ML
-Simple and minimal Python implementation of Machine Learning algorithms.
+Simple and minimal Python implementation of Machine Learning algorithms and models.
 
 ## Getting Started
 You can clone this repository to your computer.
@@ -21,7 +21,7 @@ pip install -r requirements.txt
   - [x] [Perceptron](supervised_learning/perceptron.py)
   - [x] [Linear Discriminant Analysis (LDA)](supervised_learning/lda.py)
   - [x] [Decision Trees](supervised_learning/decision_tree.py)
-  - [ ] Random Forest
+  - [x] [Random Forest](supervised_learning/random_forest.py)
   - [ ] Support Vector Machines (SVM)
   - [ ] Gradient Boosting
 
