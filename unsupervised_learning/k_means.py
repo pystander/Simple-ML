@@ -16,6 +16,9 @@ class KMeans:
         self.n_iter = n_iter
         self.init = init
 
+        # Training parameters
+        self.centers = None
+
     def init_centers(self, X):
         if self.init == "k-means++":
             # Initialize with a random center c1 (seed)

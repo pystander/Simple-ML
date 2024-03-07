@@ -12,6 +12,9 @@ class LDA:
     def __init__(self, n_components=2):
         self.n_components = n_components
 
+        # Training parameters
+        self.evecs = None
+
     def fit(self, X, y):
         self.n_samples, self.n_features = X.shape
         self.classes = np.unique(y)

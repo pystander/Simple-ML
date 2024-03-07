@@ -8,15 +8,19 @@ class Perceptron:
     Single-layer neural network with no hidden layer. Only works for binary classification.
     """
 
-    def __init__(self, learning_rate=0.0001, n_iter=1000):
-        self.learning_rate = learning_rate
+    def __init__(self, lr=1e-4, n_iter=1000):
+        self.lr = lr
         self.n_iter = n_iter
 
+        # Training parameters
+        self.weights = None
+        self.bias = None
+
     def fit(self, X, y):
-        self.n_samples, self.n_features = X.shape
+        n_features = X.shape[1]
 
         # Initialize parameters
-        self.weights = np.zeros(self.n_features)
+        self.weights = np.zeros(n_features)
         self.bias = 0
 
         # SGD
@@ -27,8 +31,8 @@ class Perceptron:
 
                 # Update parameters
                 error = y_pred - y_i
-                self.weights -= self.learning_rate * error * x_i
-                self.bias -= self.learning_rate * error
+                self.weights -= self.lr * error * x_i
+                self.bias -= self.lr * error
 
     def predict(self, X):
         z = np.dot(X, self.weights) + self.bias

@@ -9,6 +9,10 @@ class PCA:
     def __init__(self, n_components=None):
         self.n_components = n_components
 
+        # Training parameters
+        self.evals = None
+        self.evecs = None
+
     def fit(self, X):
         if self.n_components is None:
             self.n_components = min(X.shape)

@@ -14,6 +14,7 @@ class RandomForest:
         self.max_depth = max_depth
         self.min_samples_split = min_samples_split
 
+        # Plant trees
         self.trees = []
 
         for _ in range(n_trees):
@@ -21,6 +22,7 @@ class RandomForest:
             self.trees.append(tree)
 
     def fit(self, X, y):
+        # Train each tree with a random data subset
         subsets = self.get_random_subsets(X, y, self.n_trees)
 
         for i in range(self.n_trees):
@@ -28,9 +30,9 @@ class RandomForest:
             self.trees[i].fit(X_subset, y_subset)
 
     def predict(self, X):
+        # Majority vote
         tree_preds = np.array([tree.predict(X) for tree in self.trees])
         tree_preds = np.swapaxes(tree_preds, 0, 1)
-
         y_pred = [self.get_most_common(tree_pred) for tree_pred in tree_preds]
 
         return y_pred
