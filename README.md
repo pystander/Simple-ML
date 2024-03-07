@@ -7,7 +7,7 @@ You can clone this repository to your computer.
 git clone https://github.com/pystander/Simple-ML
 ```
 
-Use pip to install the required external packages.
+Use [pip](https://pypi.org/project/pip/) to install the required external packages in [requirements](requirements.txt).
 ```bash
 pip install -r requirements.txt
 ```
@@ -22,7 +22,7 @@ pip install -r requirements.txt
   - [x] [Linear Discriminant Analysis (LDA)](supervised_learning/lda.py)
   - [x] [Decision Trees](supervised_learning/decision_tree.py)
   - [x] [Random Forest](supervised_learning/random_forest.py)
-  - [ ] Support Vector Machines (SVM)
+  - [x] [Support Vector Machines (SVM)](supervised_learning/svm.py)
   - [ ] Gradient Boosting
 
 - Unsupervised Learning
