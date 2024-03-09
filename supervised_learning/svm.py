@@ -26,21 +26,19 @@ class SVM:
             y_labels = np.where(y <= 0, -1, 1)
 
             # Subgradient descent for hinge loss
-            for index, X_i in enumerate(X):
-                condition = (y_labels[index] * (np.dot(X_i, self.weights) + self.bias)) >= 1
+            for i, X_i in enumerate(X):
+                condition = y_labels[i] * (np.dot(X_i, self.weights) + self.bias) >= 1
 
                 if condition:
                     dw = self.lambda_param * self.weights
                     db = 0
                 else:
-                    dw = self.lambda_param * self.weights + np.dot(y_labels[index], X_i)
-                    db = y_labels[index]
+                    dw = self.lambda_param * self.weights - np.dot(X_i, y_labels[i])
+                    db = -y_labels[i]
 
                 self.weights -= self.lr * dw
                 self.bias -= self.lr * db
 
     def predict(self, X):
-        y_pred = np.dot(X, self.weights) + self.bias
-        y_pred = np.sign(y_pred)
-
-        return np.where(y_pred <= -1, 0, 1)
+        y_pred = np.sign(np.dot(X, self.weights) + self.bias)
+        return np.where(y_pred <= 0, 0, 1)
